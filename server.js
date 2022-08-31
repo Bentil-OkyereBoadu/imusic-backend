@@ -20,7 +20,6 @@ dotenv.config({ path:'.env'})
 //connecting database
 connectDB()
 
-
 /**getting routes */
 app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes);
@@ -28,12 +27,12 @@ app.use('/api/message', messageRoutes)
 app.use('/api/session', musicSessionRoutes);
 
 /**Handle error */
-app.use(notFound)
-app.use(errorHandler)
+// app.use(notFound)
+// app.use(errorHandler)
 
  
 const PORT = process.env.PORT || 4000;
-const FRONTEND_URL = process.env.DEV_SERVER
+const FRONTEND_URL = process.env.NODE_ENV === 'production'? process.env.PRODUCTION_URL : process.env.DEV_SERVER
 const service = server.listen( PORT, ()=> {
     console.log(`Server started on port ${PORT}`)
 })
